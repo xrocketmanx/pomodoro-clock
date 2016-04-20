@@ -5,10 +5,9 @@
 	<meta name="description" content="Pomodoro timer for time management">
 	<meta name="keywords" content="pomodoro, timer, time management">
 	<meta name="author" content="Alexander Amriov">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/pomodoro.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-	<script src="js/timer.js"></script>
-	<script src="js/pomodoro-timer.js"></script>
-	<script src="js/pomodoro.js"></script>
 </head>
 <body>
 	<div class="pomodoro">
@@ -18,17 +17,20 @@
 			<label for="rest-minutes">Resting time</label>
 			<input type="number" id="rest-minutes" min="1"></input>
 			<input type="button" id="start-button" value="Start"></input>
-			<input type="button" id="continue-button" value="Continue"></input>
 		</div>
 		<div class="pomodoro-working">
 			<p class="pomodoro-title"></p>
 			<p class="time"></p>
 			<input type="button" id="stop-button" value="Stop"></input>
 			<input type="button" id="pause-button" value="Pause"></input>
+			<input type="button" id="continue-button" value="Continue"></input>
 		</div>
 	</div>
 	<footer>
 		<p>Author: Alexander Amriov</p>
 	</footer>
+	<script src="js/timer.js"></script>
+	<script src="js/pomodoro-timer.js"></script>
+	<script src="js/pomodoro.js"></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+body {
+	background: grey;
+}
+
+.pomodoro, .pomodoro-start, .pomodoro-working {
+	width: 400px;
+	height: 400px;
+}
+
+.pomodoro-start, .pomodoro-working {
+	padding: 100px 50px;
+}
+
+.pomodoro {
+	position: absolute;
+	overflow: hidden;
+	margin: -200px 0 0 -200px;
+	top: 50%;
+	left: 50%;
+	border-radius: 50%;
+	background-color: #E91E63;
+}
+
+.pomodoro-title {
+	margin-top: 0;
+}
+
+footer {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+}
+
+footer p {
+	float: right;
+}

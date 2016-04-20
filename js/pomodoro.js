@@ -1,8 +1,7 @@
 "use strict";
 $(document).ready(function() {
 	resetTimer();
-	notify("Hello");
-	var pomodoro = new PomodoroTimer(null, null, onTick, onTick);
+	var pomodoro = initializePomodoroTimer();
 	$('#start-button').click(function() {
 		startPomodoro(pomodoro);
 	});
@@ -17,7 +16,34 @@ $(document).ready(function() {
 	});
 });
 
+function initializePomodoroTimer() {
+	return new PomodoroTimer(null, null, onTick, onTick, onWorkEnd, onRestEnd);
+
+	function onTick(seconds) {
+		var minutes = Timer.getMinutesFromTime(seconds).toLocaleString('en-US', { minimumIntegerDigits: 2 });
+		var secs = Timer.getSecondsFromTime(seconds).toLocaleString('en-US', { minimumIntegerDigits: 2 });
+		$('.time').text(minutes + ':' + secs);
+	}
+
+	function onWorkEnd() {
+		notify("Work ended, you need some rest!");
+	}
+
+	function onRestEnd() {
+		notify("Rest ended, it`s time for work!");
+	}
+
+	function notify(message) {
+		Notification.requestPermission();
+		var notification = new Notification(message);
+	}
+}
+
+/****
+Event Handlers
+****/
 function startPomodoro(pomodoro) {
+	$('.pomodoro-start').css('display', 'none');
 	var workingMinues = getWorkingMinutes();
 	var restMinutes = getRestMinutes();
 	updateLocalStorage(workingMinues, restMinutes);
@@ -26,6 +52,7 @@ function startPomodoro(pomodoro) {
 
 function stopPomodoro(pomodoro) {
 	pomodoro.stop();
+	$('.pomodoro-start').css('display', 'block');
 }
 
 function pausePomodoro(pomodoro) {
@@ -36,17 +63,9 @@ function continuePomodoro(pomodoro) {
 	pomodoro.continue();
 }
 
-function onTick(seconds) {
-	var minutes = Timer.getMinutesFromTime(seconds).toLocaleString('en-US', { minimumIntegerDigits: 2 });
-	var secs = Timer.getSecondsFromTime(seconds).toLocaleString('en-US', { minimumIntegerDigits: 2 });
-	$('.time').text(minutes + ':' + secs);
-}
-
-function notify(message) {
-	Notification.requestPermission();
-	var notification = new Notification(message);
-}
-
+/****
+DOM working
+****/
 function resetTimer() {
 	if (!(localStorage.workingMinues && localStorage.restMinutes)) {
 		updateLocalStorage(25, 5);
