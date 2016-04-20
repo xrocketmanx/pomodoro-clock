@@ -28,6 +28,7 @@ function PomodoroTimer(working, free, workingAction, freeAction, workingCallback
 	 * @param  {Number} free    free timeout seconds
 	 */
 	this.start = function(working, free) {
+		this.stop();
 		if (working && free) {
 			workingTimer.setTimeout(working);
 			freeTimer.setTimeout(free);
@@ -40,6 +41,7 @@ function PomodoroTimer(working, free, workingAction, freeAction, workingCallback
 	 * Continues working of timer
 	 */
 	this.continue = function() {
+		this.stop();
 		if (workingTimer.getSeconds()) {
 			workingTimer.continue();
 		} else if (freeTimer.getSeconds()){

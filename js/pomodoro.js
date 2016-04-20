@@ -2,16 +2,16 @@
 $(document).ready(function() {
 	resetTimer();
 	var pomodoro = initializePomodoroTimer();
-	$('#start-button').click(function() {
+	$('#start').click(function() {
 		startPomodoro(pomodoro);
 	});
-	$('#continue-button').click(function() {
+	$('#continue').click(function() {
 		continuePomodoro(pomodoro);
 	});
-	$('#stop-button').click(function() {
+	$('#stop').click(function() {
 		stopPomodoro(pomodoro);
 	});
-	$('#pause-button').click(function() {
+	$('#pause').click(function() {
 		pausePomodoro(pomodoro);
 	});
 });
@@ -27,6 +27,8 @@ function initializePomodoroTimer() {
 
 	function onWorkEnd() {
 		notify("Work ended, you need some rest!");
+		$('.pomodoro').css('background-color', '#1FDC37');
+		$('.button:hover').css('color', '#1FDC37');
 	}
 
 	function onRestEnd() {
@@ -34,7 +36,6 @@ function initializePomodoroTimer() {
 	}
 
 	function notify(message) {
-		Notification.requestPermission();
 		var notification = new Notification(message);
 	}
 }
@@ -67,6 +68,7 @@ function continuePomodoro(pomodoro) {
 DOM working
 ****/
 function resetTimer() {
+	Notification.requestPermission();
 	if (!(localStorage.workingMinues && localStorage.restMinutes)) {
 		updateLocalStorage(25, 5);
 	}
