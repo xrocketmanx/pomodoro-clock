@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Sets timer that will call action every
  * second and give it current seconds and

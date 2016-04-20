@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Has workingTime and freeTime timers that
  * working one after another in loop
@@ -11,11 +12,11 @@
  */
 function PomodoroTimer(working, free, workingAction, freeAction, workingCallback, freeCallback) {
 	var workingTimer = new Timer(working, workingAction, function() {
-		workingCallback();
+		if (workingCallback) workingCallback();
 		freeTimer.start();
 	});
 	var freeTimer = new Timer(free, freeAction, function() {
-		freeCallback();
+		if (freeCallback) freeCallback();
 		workingTimer.start();
 	}); 
 
@@ -41,7 +42,7 @@ function PomodoroTimer(working, free, workingAction, freeAction, workingCallback
 	this.continue = function() {
 		if (workingTimer.getSeconds()) {
 			workingTimer.continue();
-		} else {
+		} else if (freeTimer.getSeconds()){
 			freeTimer.continue();
 		}
 	};
