@@ -27,12 +27,12 @@ function initializePomodoroTimer() {
 
 	function onWorkEnd() {
 		notify("Work ended, you need some rest!");
-		$('.pomodoro').css('background-color', '#1FDC37');
-		$('.button:hover').css('color', '#1FDC37');
+		pomodoroRestStyle();
 	}
 
 	function onRestEnd() {
 		notify("Rest ended, it`s time for work!");
+		pomodoroWorkingStyle();
 	}
 
 	function notify(message) {
@@ -48,11 +48,13 @@ function startPomodoro(pomodoro) {
 	var workingMinues = getWorkingMinutes();
 	var restMinutes = getRestMinutes();
 	updateLocalStorage(workingMinues, restMinutes);
+	pomodoroWorkingStyle();
 	pomodoro.start(Timer.convertToSeconds(0, workingMinues, 0), Timer.convertToSeconds(0, restMinutes, 0));
 }
 
 function stopPomodoro(pomodoro) {
 	pomodoro.stop();
+	pomodoroWorkingStyle();
 	$('.pomodoro-start').css('display', 'block');
 }
 
@@ -67,6 +69,18 @@ function continuePomodoro(pomodoro) {
 /****
 DOM working
 ****/
+function pomodoroWorkingStyle() {
+	$('.pomodoro').css('background-color', '');
+	$('.button').removeClass('green-btn');
+	$('.pomodoro-title').text('WORK');
+}
+
+function pomodoroRestStyle() {
+	$('.pomodoro').css('background-color', '#1FDC37');
+	$('.button').addClass('green-btn');
+	$('.pomodoro-title').text('REST');
+}
+
 function resetTimer() {
 	Notification.requestPermission();
 	if (!(localStorage.workingMinues && localStorage.restMinutes)) {

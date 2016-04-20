@@ -4,7 +4,7 @@
 }
 
 .pomodoro-start, .pomodoro-working {
-	padding: 100px 50px;
+	padding: 75px 50px 100px 50px;
 }
 
 .pomodoro {
@@ -17,8 +17,34 @@
 	background-color: #E91E63;
 }
 
+#working-minutes, #rest-minutes {
+	height: 72px;
+	width: 72px;
+	font-size: 1.5em;
+	padding-left: 22px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border: none;
+}
+
+#working-minutes:focus, #rest-minutes:focus {
+	outline: none;
+}
+
+.time-chooser {
+	width: 72px;
+	display: inline-block;
+	text-align: center;
+}
+
+.time-chooser:first-child {
+	margin-left: 76px;
+}
+
 .pomodoro-title {
 	margin-top: 0;
+	font-size: 2em;
+	text-align: center;
+	opacity: 0.5;
 }
 
 .time {
@@ -50,18 +76,24 @@
 	color: #E91E63;
 }
 
+.green-btn:hover {
+	cursor: pointer;
+	color: #1FDC37;
+}
+
 .button:active {
 	transform: translateY(2px);
 	box-shadow: none;
 }
 
 #stop {
-	margin-left: 22px;
+	margin-left: 24px;
 }
 
 #start {
 	display: block;
-	margin: 5px auto;
+	margin: 48px auto;
+	clear: both;
 }
 
 footer {
