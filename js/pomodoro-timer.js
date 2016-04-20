@@ -1,4 +1,4 @@
-"use strict";
+
 /**
  * Has workingTime and freeTime timers that
  * working one after another in loop
