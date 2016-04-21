@@ -42,7 +42,7 @@ function initializePomodoroTimer() {
 	function spawnNotification(message) {
 		var options = {
 			body: message,
-			icon: 'https://cdn0.iconfinder.com/data/icons/food-16/85/Tomato-128.png'
+			icon: 'http://cs615120.vk.me/u13941343/docs/62edd458a8f7/notify-ico.png?extra=MQGYnEAK6YPGh8jpHrQi1_angEmhIl9mxiGjXWQBGtezdnKSN6p3mOhhZQnZjetz7LDRErtmblw15ZoWnALmoHJK3eKrzuMKS-gvA-197_ogNYd9hBay7tyvIDm5JvjgomTmv0Iu'
 		}
 		var notification = new Notification('Pomodoro', options);
 	}
