@@ -20,7 +20,7 @@
 	height: 72px;
 	width: 72px;
 	font-size: 1.5em;
-	padding-left: 22px;
+	text-align: center;
 	background-color: rgba(0, 0, 0, 0.5);
 	border: none;
 }

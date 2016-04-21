@@ -1,9 +1,9 @@
 "use strict";
 $(document).ready(function() {
-	createjs.Sound.registerSound('sounds/notify.mp3', 'notify');
-	createjs.Sound.alternateExtensions = ['mp3'];
+	registerSounds();
 	resetTimer();
 	var pomodoro = initializePomodoroTimer();
+	$('#working-minutes, #rest-minutes').keydown(validateNumber);
 	$('#start').click(function() {
 		startPomodoro(pomodoro);
 	});
@@ -89,6 +89,12 @@ function pomodoroRestStyle() {
 	$('.pomodoro-title').text('REST');
 }
 
+function validateNumber(event) {
+	if (event.keyCode !== 8 && (event.keyCode < 48 || event.keyCode > 57)) {
+		event.preventDefault();
+	}
+}
+
 function resetTimer() {
 	Notification.requestPermission();
 	if (!(localStorage.workingMinues && localStorage.restMinutes)) {
@@ -96,6 +102,11 @@ function resetTimer() {
 	}
 	setWorkingMinutes(localStorage.workingMinues);
 	setRestMinutes(localStorage.restMinutes);
+}
+
+function registerSounds() {
+	createjs.Sound.registerSound('sounds/notify.mp3', 'notify');
+	createjs.Sound.alternateExtensions = ['mp3'];
 }
 
 function updateLocalStorage(workingMinues, restMinutes) {
