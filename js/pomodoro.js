@@ -42,7 +42,7 @@ function initializePomodoroTimer() {
 	function spawnNotification(message) {
 		var options = {
 			body: message,
-			icon: '../img/notify-ico.png'
+			icon: 'img/notify-ico.png'
 		}
 		var notification = new Notification('Pomodoro', options);
 	}
