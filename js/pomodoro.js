@@ -32,11 +32,19 @@ function initializePomodoroTimer() {
 
 	function onRestEnd() {
 		notify("Rest ended, it`s time for work!");
-		pomodoroWorkingStyle();
+		pomodoroWorkStyle();
 	}
 
 	function notify(message) {
-		var notification = new Notification(message);
+		spawnNotification(message);
+	}
+
+	function spawnNotification(message) {
+		var options = {
+			body: message,
+			icon: '../img/notify-ico.png'
+		}
+		var notification = new Notification('Pomodoro', options);
 	}
 }
 
@@ -44,18 +52,17 @@ function initializePomodoroTimer() {
 Event Handlers
 ****/
 function startPomodoro(pomodoro) {
-	$('.pomodoro-start').css('display', 'none');
 	var workingMinues = getWorkingMinutes();
 	var restMinutes = getRestMinutes();
 	updateLocalStorage(workingMinues, restMinutes);
-	pomodoroWorkingStyle();
+	pomodoroWorkStyle();
 	pomodoro.start(Timer.convertToSeconds(0, workingMinues, 0), Timer.convertToSeconds(0, restMinutes, 0));
+	$('.pomodoro-start').slideUp(500);
 }
 
 function stopPomodoro(pomodoro) {
 	pomodoro.stop();
-	pomodoroWorkingStyle();
-	$('.pomodoro-start').css('display', 'block');
+	$('.pomodoro-start').slideDown(500);
 }
 
 function pausePomodoro(pomodoro) {
@@ -69,15 +76,13 @@ function continuePomodoro(pomodoro) {
 /****
 DOM working
 ****/
-function pomodoroWorkingStyle() {
-	$('.pomodoro').css('background-color', '');
-	$('.button').removeClass('green-btn');
+function pomodoroWorkStyle() {
+	$('.pomodoro').removeClass('green').addClass('red');
 	$('.pomodoro-title').text('WORK');
 }
 
 function pomodoroRestStyle() {
-	$('.pomodoro').css('background-color', '#1FDC37');
-	$('.button').addClass('green-btn');
+	$('.pomodoro').removeClass('red').addClass('green');
 	$('.pomodoro-title').text('REST');
 }
 
