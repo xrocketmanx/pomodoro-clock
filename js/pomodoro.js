@@ -42,7 +42,11 @@ function initializePomodoroTimer() {
 	function spawnNotification(message) {
 		var options = {
 			body: message,
+<<<<<<< HEAD
 			icon: 'img/notify-ico.png'
+=======
+			icon: 'http://cs615120.vk.me/u13941343/docs/62edd458a8f7/notify-ico.png?extra=MQGYnEAK6YPGh8jpHrQi1_angEmhIl9mxiGjXWQBGtezdnKSN6p3mOhhZQnZjetz7LDRErtmblw15ZoWnALmoHJK3eKrzuMKS-gvA-197_ogNYd9hBay7tyvIDm5JvjgomTmv0Iu'
+>>>>>>> 4ad193135d3162df72ba18283541b7e7c31be2e1
 		}
 		var notification = new Notification('Pomodoro', options);
 	}
